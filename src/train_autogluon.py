@@ -16,8 +16,6 @@ predictor = TabularPredictor(label = label).fit(train_data.drop(columns = [col])
 import pandas as pd
 test_data = TabularDataset('data/test.csv')
 
-test_data[label] = np.log1p(test_data[label])
-
 # predict
 preds = predictor.predict(test_data.drop(columns = [col]))
 
