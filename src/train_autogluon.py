@@ -6,9 +6,8 @@ train_data = TabularDataset('data/train.csv')
 
 # preprocessing
 col, label = 'Id', 'SalePrice'
-labels = ['LotArea', 'TotalBsmtSF', '1stFlrSF', 'GrLivArea']
-for label in labels + ['SalePrice']:
-    train_data[label] = np.log1p(train_data[label])
+
+train_data[label] = np.log1p(train_data[label])
 
 # train   
 predictor = TabularPredictor(label = label).fit(train_data.drop(columns = [col]))
@@ -17,8 +16,7 @@ predictor = TabularPredictor(label = label).fit(train_data.drop(columns = [col])
 import pandas as pd
 test_data = TabularDataset('data/test.csv')
 
-for label in labels:
-    test_data[label] = np.log1p(test_data[label])
+test_data[label] = np.log1p(test_data[label])
 
 # predict
 preds = predictor.predict(test_data.drop(columns = [col]))
